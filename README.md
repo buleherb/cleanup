@@ -1,13 +1,13 @@
 # cleanup
 ##### A bash cleanup utility that safely discards temporary files (that were created from a script).
-
+<br>
 
 ### WHAT IS THIS CLEANUP UTILITY?
 
 This cleanup utility takes care of removing temporary files that were created through the process of a script.
 
 Ideally when scripting, any temporary files you create would be recorded and removed in a safe and controlled manner every time the script exits (for whatever reason it exits). A list of files would be compiled and then individually checked for their existence before attempting to remove them. You pass the filepaths to this utility and it does the checking and removing of files.
-
+<br>
 
 ### WHY IS THIS UTILITY NEEDED?
 
@@ -18,7 +18,7 @@ This would mean having to update the trap command every time I created a new tem
 With this utility, you simply initialise a TMP_FILES variable at the beginning of your script, create a trap command to feed the TMP_FILES variable into the cleanup utility when the script receives an exit signal, and then update the TMP_FILES variable with the temp file filepaths as you create them.
 
 This means one trap command at the beginning of your script, and all temporary files safely discarded regardless of when or how your script exits.
-
+<br>
 
 ### HOW DO I IMPLEMENT THIS INTO MY OWN SCRIPTS?
 
@@ -29,7 +29,11 @@ TMP_FILES=""
 ```
 
 ###### Use the 'trap' command to run the cleanup utility when the script receives any exit signal
-`trap "{ bash $CLEANUP_UTILITY $TMP_FILES ; }" SIGINT SIGTERM ERR EXIT`
+```
+trap "{ bash $CLEANUP_UTILITY $TMP_FILES ; }" SIGINT SIGTERM ERR EXIT
+```
 
 ###### Update the TMP_FILES variable with the full filepath of the temporary files as you create them, with a whitespace between each filepath
-`TMP_FILES=""$SCRIPT_IN_PROGRESS_FILE" "$RESULTS_FILE" "$ANOTHER_TEMP_FILE""`
+```
+TMP_FILES=""$SCRIPT_IN_PROGRESS_FILE" "$RESULTS_FILE" "$ANOTHER_TEMP_FILE""
+```
