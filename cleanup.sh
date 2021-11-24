@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 
-#### PRECURSORS
-
 # Set shell options
 set -eou pipefail
 #set -x    # for debugging purposes - this prints the command that is to be executed before the command is executed
-
-
-
-#### SCRIPT
 
 USAGE_func() {
     echo "usage"
